@@ -1,0 +1,30 @@
+{% load static %}
+
+<h1>Input your text below: </h1>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<form method="POST" action="counter">
+    {% csrf_token %}
+    <textarea name="text" rows="12" cols="10">
+
+    </textarea>
+    </br>
+    <input type="submit">
+</form>>
+{% if user.is_authenticated %}
+<h2>Welcome, {{user.username}}!</h2>
+<div><a href="index">Logout</a></div>
+{% endif %}
+<ul>
+    {% for feature in features %}
+    <li>
+        <div>{{feature.name}}</div>
+        <span>{{feature.details}}</span>
+        {% if feature.name == "Quick" %}
+        <p>This feature exists</p>
+        {% else %}
+        <p>This feature doesn't exist</p>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
